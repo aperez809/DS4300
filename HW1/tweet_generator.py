@@ -51,9 +51,9 @@ class User:
 def generate_all_tweets():
     """
     Generate 1 million random Tweets and
-    write them to a file called `tweets.txt`
+    write them to a file called `tweets.csv`
     """
-    with open('tweets.txt', 'w') as f:
+    with open('tweets.csv', 'w') as f:
         for i in range(10**6):
             curr_tweet = Tweet()
             curr_tweet.set_tweet_text()
@@ -62,9 +62,9 @@ def generate_all_tweets():
 def generate_user_followers():
     """
     Generate 1000 random Users and
-    write them to a file called `user_followers.txt`
+    write them to a file called `user_followers.csv`
     """
-    with open("user_followers.txt", "w") as f:
+    with open("user_followers.csv", "w") as f:
         for i in range(1000):
             curr_user = User()
             curr_user.set_followers()
