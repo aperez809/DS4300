@@ -23,10 +23,11 @@ DROP TABLE IF EXISTS `FOLLOWERS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `FOLLOWERS` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` mediumtext,
-  `follows_id` mediumtext,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `follows_id` int NOT NULL,
   PRIMARY KEY (`id`)
+  FOREIGN KEY(user_id) REFERENCES TWEETS(user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,12 +39,13 @@ DROP TABLE IF EXISTS `TWEETS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `TWEETS` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tweet_id` mediumtext,
-  `user_id` mediumtext,
-  `tweet_ts` datetime DEFAULT NULL,
-  `tweet_text` varchar(140) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tweet_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `tweet_ts` datetime NOT NULL,
+  `tweet_text` varchar(140) NOT NULL,
   PRIMARY KEY (`id`)
+  FOREIGN KEY(user_id) REFERENCES FOLLOWERS(user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
