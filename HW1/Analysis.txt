@@ -1,13 +1,17 @@
 1. Device Hardware Configs/ Model Assumptions
-Processor    -- 2.9 GHz i5
-Cores        -- 4 cores
-RAM          -- 8 gb 2133 MHz LPDDR3
-Disk         -- 500 GB Flash Storage ( ~200GB available)
+Processor  -- 2.9 GHz i5
+Cores      -- 4 cores
+RAM        -- 8 gb 2133 MHz LPDDR3
+Disk       -- 500 GB Flash Storage ( ~200GB available)
 
+Our model used <a href=https://blog.revolutionanalytics.com/2013/12/the-distribution-of-twitter-follower-counts.html>this article's findings</a> to roughly build out a semi-log distribution of users to folowers. That is, of our 1000 users, many users have few followers and few users have many followers. Each of the million tweets was assigned to a random user, meaning that there were roughly an even number of tweets per user (between 900-1100 tweets/user).
 Model Assumptions
-# of Users   -- 1000
-Tweets/user  -- Random 
-Distribution -- Logarithmic
+# of Users
+1000
+# of Tweets per user
+Random 
+Distribution of # followers
+Logarithmic
   
 2. System Parameters Effect on Performance
 Our system's specs aren't the strongest in the world, so runnning both the MySQL server as well as our Java API 
