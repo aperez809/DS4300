@@ -1,16 +1,13 @@
 1. Device Hardware Configs/ Model Assumptions
-Processor  -- 2.9 GHz i5
-Cores      -- 4 cores
-RAM        -- 8 gb 2133 MHz LPDDR3
-Disk       -- 500 GB Flash Storage ( ~200GB available)
+Processor    -- 2.9 GHz i5
+Cores        -- 4 cores
+RAM          -- 8 gb 2133 MHz LPDDR3
+Disk         -- 500 GB Flash Storage ( ~200GB available)
 
 Model Assumptions
-# of Users
-1000
-# of Tweets per user
-Random 
-Distribution of # followers
-Logarithmic
+# of Users   -- 1000
+Tweets/user  -- Random 
+Distribution -- Logarithmic
   
 2. System Parameters Effect on Performance
 Our system's specs aren't the strongest in the world, so runnning both the MySQL server as well as our Java API 
