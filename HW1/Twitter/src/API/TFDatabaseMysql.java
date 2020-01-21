@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 public class TFDatabaseMysql implements TFDatabaseAPI{
 
-    DBUtils dbu;
+    DBUtils dbu = new DBUtils("jdbc:mysql://localhost:3306/ds4300-assignment1?serverTimezone=EST5EDT", "root", "Nice3rock!");
 
     public int registerFollower(Follower f){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -16,10 +16,16 @@ public class TFDatabaseMysql implements TFDatabaseAPI{
 
     public int insertTweet(Tweet t){
         // build and run query
-        String sql = "INSERT INTO tweets (id,tweetId,userId,tweetTS, tweetText) VALUES" +
-                "('"+t.getId()+"','"+t.getTweetId()+"',"+t.getUserId()+"',"+t.getTweetTS()+"',"+t.getTweetText()+")";
+
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String ts = sdf.format(t.getTweetTS());
+
+        String sql = "INSERT INTO tweets (tweet_id,user_id,tweet_ts, tweet_text) VALUES" +
+                "('" + t.getTweetId()+"','"+t.getUserId()+"','"+ts+"','"+t.getTweetText()+"')";
 
         // Return new doctor ID
+
         return dbu.insertOneRecord(sql);
     }
 

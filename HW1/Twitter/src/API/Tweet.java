@@ -2,6 +2,7 @@ package API;
 
 import java.util.Date;
 
+
 public class Tweet {
     private int id;
     private int tweetId;
@@ -16,6 +17,15 @@ public class Tweet {
         this.tweetTS = tweetTS;
         this.tweetText = tweetText;
     }
+
+    public Tweet(int tweetId, int userId, Date tweetTS, String tweetText){
+        this.tweetId = tweetId;
+        this.userId = userId;
+        this.tweetTS = tweetTS;
+        this.tweetText = tweetText;
+    }
+
+
 
     public int getId(){return id;}
     public void setId(int id){this.id = id;}
