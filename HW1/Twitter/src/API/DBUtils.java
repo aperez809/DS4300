@@ -69,6 +69,23 @@ public class DBUtils {
     }
 
 
+    public ResultSet timeline(int userId) throws Exception {
+      ResultSet rs = null;
+      try {
+        Connection con = getConnection();
+        Statement stmt = con.createStatement();
+        String sqlGet = "SELECT t.tweet_id, t.tweet_text, t.user_id, tweet_ts FROM  TWEETS as t  JOIN FOLLOWERS as f ON " +
+                "t.user_id = f.follows_id WHERE f.user_id = " + userId + " ORDER BY tweet_ts DESC LIMIT 10";
+        rs = stmt.executeQuery(sqlGet);
+      }
+      catch(SQLException e){
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+      }
+      return rs;
+  }
+
+
     /**
      * For a table of terms consisting of an id and string value pair, get the id of the term
      * adding a new term if it does not yet exist in the table

@@ -1,6 +1,7 @@
 package API;
 
 import java.text.SimpleDateFormat;
+import java.sql.ResultSet;
 
 public class TFDatabaseMysql implements TFDatabaseAPI{
 
@@ -27,6 +28,10 @@ public class TFDatabaseMysql implements TFDatabaseAPI{
         // Return new doctor ID
 
         return dbu.insertOneRecord(sql);
+    }
+
+    public ResultSet getTimeline(int user_id) throws Exception {
+        return dbu.timeline(user_id);
     }
 
 
