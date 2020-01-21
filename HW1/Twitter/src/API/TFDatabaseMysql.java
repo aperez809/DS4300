@@ -8,8 +8,8 @@ public class TFDatabaseMysql implements TFDatabaseAPI{
 
     public int registerFollower(Follower f){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String sql = "INSERT INTO followers (id,user_id,follows_id) VALUES" +
-                    "('"+f.getId()+"','"+f.getUserId()+"','"+f.getFollowsId()+"')";
+        String sql = "INSERT INTO followers (user_id,follows_id) VALUES" +
+                    "('"+f.getUserId()+"','"+f.getFollowsId()+"')";
         return dbu.insertOneRecord(sql);
     }
 
