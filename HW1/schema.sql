@@ -27,7 +27,6 @@ CREATE TABLE `FOLLOWERS` (
   `user_id` int NOT NULL,
   `follows_id` int NOT NULL,
   PRIMARY KEY (`id`)
-  FOREIGN KEY(user_id) REFERENCES TWEETS(user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -45,7 +44,6 @@ CREATE TABLE `TWEETS` (
   `tweet_ts` datetime NOT NULL,
   `tweet_text` varchar(140) NOT NULL,
   PRIMARY KEY (`id`)
-  FOREIGN KEY(user_id) REFERENCES FOLLOWERS(user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
