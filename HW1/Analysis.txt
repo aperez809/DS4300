@@ -1,3 +1,8 @@
+Contributions: 
+- Alex Perez: Tweet and user-follower generation
+- Owen Haiber: DB Schema and performance testing
+- Aasish Basani: DB API development
+
 1. Device Hardware Configs/ Model Assumptions
 Processor  -- 2.9 GHz i5
 Cores      -- 4 cores
