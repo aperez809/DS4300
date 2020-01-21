@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 public class TFDatabaseMysql implements TFDatabaseAPI{
 
-    DBUtils dbu = new DBUtils("jdbc:mysql://localhost:3306/ds4300-assignment1?serverTimezone=EST5EDT", "root", "");
+    DBUtils dbu = new DBUtils("jdbc:mysql://localhost:3306/ds4300-assignment1?serverTimezone=EST5EDT", "root", "Nice3rock!");
 
     public int registerFollower(Follower f){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
