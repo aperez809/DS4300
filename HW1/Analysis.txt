@@ -4,14 +4,9 @@ Cores      -- 4 cores
 RAM        -- 8 gb 2133 MHz LPDDR3
 Disk       -- 500 GB Flash Storage ( ~200GB available)
 
-Model Assumptions
-# of Users
-1000
-# of Tweets per user
-Random 
-Distribution of # followers
-Logarithmic
-  
+Our model uses the findings in this article (https://blog.revolutionanalytics.com/2013/12/the-distribution-of-twitter-follower-counts.html) and assumes that Twitter users follower a semi-log distribution of users to followers. That is, for our 1000 users, many have few followers and few have many followers. Each of the 1 million tweets is assigned randomly to a user, meaning that the distribution of tweets to users is basically even (about 900-1100 tweets per user).
+
+
 2. System Parameters Effect on Performance
 Our system's specs aren't the strongest in the world, so runnning both the MySQL server as well as our Java API 
 program on the same machine definnitely will nnegatively impact our performance.  However, by the same token, since the 
