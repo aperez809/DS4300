@@ -2,6 +2,8 @@
 
 This is a Readme for our DS4300 repo submissions.
 
-## Assignment 1
+## HW1
 
-The twitter stuff with schema, tweet generator, DB load script, and a Java API
+The twitter stuff with our basic schema, tweet generator, DB load script (which loads both the followers table and the tweets table) using our Java API, and the Java API itself.
+
+Analysis.txt includes our Annalysis and Reporting section of the assignment.
