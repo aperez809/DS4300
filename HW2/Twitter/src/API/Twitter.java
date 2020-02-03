@@ -11,6 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Twitter {
     private static TFDatabaseAPI api = new TFDatabaseMysql();
+    private static TFDatabaseAPI redisApi = new TFDatabaseRedis();
 
     public static void main(String[] args) throws Exception {
 //      BufferedReader csvReaderTweets = new BufferedReader(new FileReader("/Users/owen/opt/ds4300/DS4300/HW1/tweets.csv"));
@@ -56,21 +57,6 @@ public class Twitter {
         long startTime = System.nanoTime();
         System.out.println("Starting Tweets Load");
 
-
-        ArrayList rows = new ArrayList();
-        int randomNum = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
-        System.out.println("Grabbing user " + randomNum);
-        ResultSet rs = api.getTimeline(randomNum);
-        while (rs.next()) {
-          String[] row = new String[4];
-          for(int i = 1;i<=4;i++){
-            row[i-1]=rs.getString(i);
-          }
-          rows.add(row);
-        }
-        for (int i = 0; i < rows.size(); i++) {
-          System.out.println(Arrays.toString((Object[]) rows.get(i)));
-        }
 
         // End time of loading tweets.
         long stopTime = System.nanoTime();

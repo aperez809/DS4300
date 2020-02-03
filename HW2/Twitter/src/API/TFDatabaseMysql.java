@@ -2,6 +2,11 @@ package API;
 
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
+
+import static API.Tweet.NUM_FIELDS;
 
 public class TFDatabaseMysql implements TFDatabaseAPI{
 
@@ -31,7 +36,28 @@ public class TFDatabaseMysql implements TFDatabaseAPI{
     }
 
     public ResultSet getTimeline(int user_id) throws Exception {
-        return dbu.timeline(user_id);
+        //return dbu.timeline(user_id);
+
+        // Build List of String arrays to represent results
+        ArrayList<String[]> rows = new ArrayList<>();
+
+        // Grab random user's timeline
+        int randomNum = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
+        System.out.println("Grabbing user " + randomNum);
+
+        ResultSet rs = this.getTimeline(randomNum);
+
+        while (rs.next()) {
+            String[] row = new String[NUM_FIELDS];
+            for(int i = 1; i <= NUM_FIELDS; i++){
+                row[i-1] = rs.getString(i);
+            }
+            rows.add(row);
+        }
+
+        for (String[] row : rows) {
+            System.out.println(Arrays.toString(row));
+        }
     }
 
 
