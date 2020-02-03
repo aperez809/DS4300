@@ -1,17 +1,17 @@
+Contributions: 
+- Alex Perez: Tweet and user-follower generation
+- Owen Haiber: DB Schema and performance testing
+- Aasish Basani: DB API development
+
 1. Device Hardware Configs/ Model Assumptions
 Processor  -- 2.9 GHz i5
 Cores      -- 4 cores
 RAM        -- 8 gb 2133 MHz LPDDR3
 Disk       -- 500 GB Flash Storage ( ~200GB available)
 
-Model Assumptions
-# of Users
-1000
-# of Tweets per user
-Random 
-Distribution of # followers
-Logarithmic
-  
+Our model uses the findings in this article (https://blog.revolutionanalytics.com/2013/12/the-distribution-of-twitter-follower-counts.html) and assumes that Twitter users follower a semi-log distribution of users to followers. That is, for our 1000 users, many have few followers and few have many followers. Each of the 1 million tweets is assigned randomly to a user, meaning that the distribution of tweets to users is basically even (about 900-1100 tweets per user).
+
+
 2. System Parameters Effect on Performance
 Our system's specs aren't the strongest in the world, so runnning both the MySQL server as well as our Java API 
 program on the same machine definnitely will nnegatively impact our performance.  However, by the same token, since the 
@@ -20,7 +20,11 @@ less time.
 
 Memory constraints shouldn't matter too much for the tweet data load as Java is reading the csv one line at a time, and should 
 be garbage collecting along the way.
+
+For timeline pulling, not having indexing on our tables likely severely impacted Read performance.  Additionally, the variance in 
   
+Overall, we experienced the following performance:
+
 
 3. Theoretical Best Performance
 Writes:
@@ -29,3 +33,4 @@ and write both of them to disk.  Obviously, this time is significantly improved 
 program.  
 
 Reads:
+Reading from the csv files I think makes less sense from a theoretical analysis perspective, as the only real way to test the performance of gathering a result set would be loading them to some relational object (since that is how they are structured).  However, in reading from the csv file with a simple grep for the user ID takes ~5 seconds, which is significantly faster than some of the read times using the DB (anywhere from 1s-59s).
