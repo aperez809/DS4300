@@ -15,7 +15,7 @@ public class TFDatabaseMysql implements TFDatabaseAPI{
     }
 
 
-    public int insertTweet(Tweet t){
+    public int insertTweet(Tweet t, boolean... broadcast){
         // build and run query
 
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

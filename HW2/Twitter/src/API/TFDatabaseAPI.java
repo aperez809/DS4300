@@ -1,16 +1,21 @@
 package API;
 
-import java.sql.ResultSet;
 
 public interface TFDatabaseAPI {
+
+    /***
+     * Registers the follower object with the database
+     * @param f
+     * @return
+     */
     public int registerFollower(Follower f);
 
-    public int insertTweet(Tweet t);
+    public int insertTweet(Tweet t, boolean... b);
 
     public void authenticate(String user, String password);
 
     public void closeConnection();
 
-    public ResultSet getTimeline(int user_id) throws Exception;
+    public String getTimeline(int user_id) throws Exception;
 
 }

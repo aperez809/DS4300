@@ -14,13 +14,6 @@ public class RedisTwitterAPI implements TwitterAPI {
     }
 
 
-    public long getNextID()
-    {
-        long next = jedis.incr("nextTweetID");
-        return next;
-    }
-
-
     public void postTweet(Tweet t, boolean broadcast)
     {
         String key = "tweet:"+t.getUserID()+":"+getNextID();
@@ -36,12 +29,6 @@ public class RedisTwitterAPI implements TwitterAPI {
         }
     }
 
-    public void addToTimeline(Tweet t, String userID)
-    {
-        String key = "timeline:"+userID;
-        String value = t.toString();
-        jedis.lpush(key, value);
-    }
 
 
 
