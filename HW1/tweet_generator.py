@@ -48,6 +48,7 @@ class User:
         while len(self.followers) < num_followers:
             self.followers.add(random.randint(1,1000))
 
+
 def generate_all_tweets():
     """
     Generate 1 million random Tweets and

@@ -1,0 +1,31 @@
+1. Device Hardware Configs/ Model Assumptions
+Processor  -- 2.9 GHz i5
+Cores      -- 4 cores
+RAM        -- 8 gb 2133 MHz LPDDR3
+Disk       -- 500 GB Flash Storage ( ~200GB available)
+
+Model Assumptions
+# of Users
+1000
+# of Tweets per user
+Random 
+Distribution of # followers
+Logarithmic
+  
+2. System Parameters Effect on Performance
+Our system's specs aren't the strongest in the world, so runnning both the MySQL server as well as our Java API 
+program on the same machine definnitely will nnegatively impact our performance.  However, by the same token, since the 
+database connection is made to localhost, routing to the DB to connect is simplified and should take (although very marginal,) 
+less time.  
+
+Memory constraints shouldn't matter too much for the tweet data load as Java is reading the csv one line at a time, and should 
+be garbage collecting along the way.
+  
+
+3. Theoretical Best Performance
+Writes:
+On my machine (with all SSD storage), it takes ~20s real time to both randomly generate our tweets and follower relationships 
+and write both of them to disk.  Obviously, this time is significantly improved over our ~5min runtime for our DB insertion 
+program.  
+
+Reads:
