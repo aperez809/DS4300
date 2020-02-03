@@ -8,14 +8,35 @@ public interface TFDatabaseAPI {
      * @param f
      * @return
      */
-    public int registerFollower(Follower f);
+    int registerFollower(Follower f);
 
-    public int insertTweet(Tweet t, boolean... b);
+    /***
+     * Inserts the given tweet into the database.  If given a braodcast value, will also store that
+     * tweet on all the timelines of those who follow that tweet.
+     * @param t
+     * @param broadcast
+     * @return
+     */
+    int insertTweet(Tweet t, boolean... broadcast);
 
-    public void authenticate(String user, String password);
+    /***
+     * Authenticates the user to the underlying DB
+     * @param user
+     * @param password
+     */
+    void authenticate(String user, String password);
 
-    public void closeConnection();
+    /***
+     * Closes the connection to the underlying DB
+     */
+    void closeConnection();
 
-    public String getTimeline(int user_id) throws Exception;
+    /***
+     * Returns the timeline of the given user_id
+     * @param user_id
+     * @return
+     * @throws Exception
+     */
+    String getTimeline(int user_id) throws Exception;
 
 }

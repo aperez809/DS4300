@@ -25,7 +25,10 @@ public class Tweet {
         this.tweetText = tweetText;
     }
 
-
+    public String toString() {
+        String rep = this.tweetId + ":" + this.userId + ":" + this.tweetTS + ":" + this.tweetText;
+        return rep;
+    }
 
     public int getId(){return id;}
     public void setId(int id){this.id = id;}
