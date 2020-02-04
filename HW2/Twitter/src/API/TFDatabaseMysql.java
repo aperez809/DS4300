@@ -4,11 +4,12 @@ import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static API.Tweet.NUM_FIELDS;
 
-public class TFDatabaseMysql implements TFDatabaseAPI{
+public class TFDatabaseMysql implements TFDatabaseAPI {
 
     DBUtils dbu = new DBUtils("jdbc:mysql://localhost:3306/ds4300-assignment1?serverTimezone=EST5EDT", "root", "Nice3rock!");
 
@@ -35,18 +36,16 @@ public class TFDatabaseMysql implements TFDatabaseAPI{
         return dbu.insertOneRecord(sql);
     }
 
-    public ResultSet getTimeline(int user_id) throws Exception {
-        //return dbu.timeline(user_id);
-
+    public List<String[]> getTimeline(int user_id) throws Exception {
         // Build List of String arrays to represent results
         ArrayList<String[]> rows = new ArrayList<>();
 
-        // Grab random user's timeline
-        int randomNum = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
-        System.out.println("Grabbing user " + randomNum);
+        // Grab given user's timeline
+        System.out.println("Grabbing user " + user_id);
+        ResultSet rs = dbu.timeline(user_id);
 
-        ResultSet rs = this.getTimeline(randomNum);
-
+        // For each tweet in the result set, parse it into a string array.
+        // Needed to conform to return type of redis.
         while (rs.next()) {
             String[] row = new String[NUM_FIELDS];
             for(int i = 1; i <= NUM_FIELDS; i++){
@@ -55,9 +54,7 @@ public class TFDatabaseMysql implements TFDatabaseAPI{
             rows.add(row);
         }
 
-        for (String[] row : rows) {
-            System.out.println(Arrays.toString(row));
-        }
+        return rows;
     }
 
 
@@ -70,5 +67,12 @@ public class TFDatabaseMysql implements TFDatabaseAPI{
      */
     public void closeConnection(){
         dbu.closeConnection();
+    }
+
+    @Override
+    public void printTweets(List<String[]> tweets) {
+        for (String[] tweet : tweets) {
+            System.out.println(Arrays.toString(tweet));
+        }
     }
 }

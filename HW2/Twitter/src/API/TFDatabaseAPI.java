@@ -1,6 +1,8 @@
 package API;
 
 
+import java.util.List;
+
 public interface TFDatabaseAPI {
 
     /***
@@ -37,6 +39,8 @@ public interface TFDatabaseAPI {
      * @return
      * @throws Exception
      */
-    String getTimeline(int user_id) throws Exception;
+    List<String[]> getTimeline(int user_id) throws Exception;
+
+    void printTweets(List<String[]> tweets);
 
 }
