@@ -1,0 +1,18 @@
+HW3 Part 1
+
+Queries:
+
+Model 1 -
+	SELECT Product_id
+	FROM Product_Catalog 
+	WHERE Category = "WATCH" and Diameter = "44mm" and Brand = "Tommy Hilfiger" and Dial_Color = "Beige"
+
+
+Model 2 -
+	SELECT Product_id
+	FROM WATCHES 
+	WHERE Diameter = "44mm" and Brand = "Tommy Hilfiger" and Dial_Color = "Beige"
+
+
+Model 3 - 
+	
