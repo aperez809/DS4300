@@ -3,16 +3,28 @@ HW3 Part 1
 Queries:
 
 Model 1 -
-	SELECT Product_id
+	SELECT product_id, price, is_available
 	FROM Product_Catalog 
-	WHERE Category = "WATCH" and Diameter = "44mm" and Brand = "Tommy Hilfiger" and Dial_Color = "Beige"
+	WHERE category = "WATCH" and diameter = "44mm" and brand = "Tommy Hilfiger" and dial_color = "Beige";
 
 
 Model 2 -
-	SELECT Product_id
-	FROM WATCHES 
-	WHERE Diameter = "44mm" and Brand = "Tommy Hilfiger" and Dial_Color = "Beige"
+	SELECT p.product_id, p.price, p.is_available
+	FROM WATCHES AS w JOIN PRODUCT AS p ON w.product_id = p.product_id
+	WHERE w.diameter = "44mm" and w.brand = "Tommy Hilfiger" and Dial_Color = "Beige";
 
 
-Model 3 - 
+Model 3 -
+	SELECT product_id, price, is_available
+	FROM PRODUCT AS p JOIN CATEGORY ON p.product_id = c.product_id
+	WHERE c.category_name = "WATCHES" AND p.product_id IN 
+		SELECT DISTINCT a.product_id
+		FROM PROPERTY a JOIN PROPERTY b ON a.product_id = b.product_id
+		JOIN PROPERTY c ON b.product_id = c.product_id
+		WHERE a.key = 'Diameter' AND a.value = '44mm'
+		AND b.key = 'Brand' AND b.value = 'Tommy_Hilfiger'
+		AND c.key = 'Dial Color' AND c.value = 'Beige';
+Model 4 - 
 	
+	hget category:watches
+	hget
