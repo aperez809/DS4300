@@ -56,3 +56,13 @@ db.products.find({
 
 ## Analysis of Options:
 
+Model 1 has huge issues with storage. In most cases, a single product will use a tiny subset of the available fields in the database, even if the fields are generalized highly (`color_1` instead of `dial_color`, for example). Additionally, with the addition of new products, there will likely need to be new columns; these new columns will be added frequently in the case of large product catalog, meaning there will often need to be an additional n (often unused) cells being added to the table. 
+
+Model 2 is better in terms of actually occupy space that is allocated in the db but still not very scalable; entire tables need to be added with each new category of product. From a query complexity standpoint, it is actually a pretty reasonable solution, but the need for so many tables makes it unusable. 
+
+Model 3 has horrible query complexity that necessitates huge joins across tables, and that alone makes it a poor choice. It is basically a relational version of Mongo, with more restrictions. At this point, it would be better to go with a data storage  application that is specifically engineered for this use case (i.e. Mongo).
+
+Model 4 would also essentially be a recreation of Mongo using Redis. That the time complexity of the queries would probably not be great unless we fundamentally changed Redis (by adding b-trees to speed up querying, etc). Redis should really be used for quick storage and grabbing objects that we know are already there, as opposed to searching for data.
+
+Model 5 would be the best option because this is something Mongo is specifically made for. It is schemaless which provides the flexibility to model large product catalogs, and is built to provide fast searches of its data. 
+
