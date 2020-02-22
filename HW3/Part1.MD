@@ -1,8 +1,8 @@
 # HW3 Part 1
----
+
 
 ## Queries:
----
+
 
 ### Model 1
 ```
