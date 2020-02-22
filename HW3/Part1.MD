@@ -1,0 +1,58 @@
+# HW3 Part 1
+---
+
+## Queries:
+---
+
+### Model 1
+```
+SELECT product_id, price, is_available
+FROM PRODUCT
+WHERE category_name = "WATCH" and diameter = "44mm" and brand = "Tommy Hilfiger" and dial_color = "Beige";
+```
+
+### Model 2
+```
+SELECT p.product_id, p.price, p.is_available, w.*
+FROM WATCHES w
+WHERE w.diameter = "44mm" and w.brand = "Tommy Hilfiger" and Dial_Color = "Beige"
+JOIN PRODUCT p ON w.product_id = p.product_id;
+```
+
+### Model 3
+```
+SELECT * 
+FROM CATEGORY c
+JOIN PROPERTY prop on c.category_name = "WATCHES" AND prop.category_id = c.category_id
+JOIN PRODUCT prod on prop.product_id = prod.product_id
+WHERE prod.product_id in (
+	SELECT a.product_id
+	FROM PROPERTY a JOIN PROPERTY b ON a.product_id = b.product_id
+	JOIN PROPERTY c ON b.product_id = c.product_id
+	WHERE a.key = 'Diameter' AND a.value = '44mm'
+	AND b.key = 'Brand' AND b.value = 'Tommy_Hilfiger'
+	AND c.key = 'Dial Color' AND c.value = 'Beige';
+);
+```
+	
+### Model 4 
+
+General Outline: Our Redis store will have a similar structure to Model 2, where each category's name (or ID) is the
+key. The value at that key is a hashmap-like object containing the products within that category, with each of the
+values being another nested hashmap with different characteristics about the product. A search API would take in a
+category, and relevant characteristics to search for. Retrieving category -> O(1), returning matching records -> O(n*k)
+where n in the number of records in the table, and k is the number of characteristics for the category (assumes that
+all items in a category have the same characteristics).
+
+### Model 5 
+```
+db.products.find({
+	'category': 'WATCHES',
+	'characteristics.diameter': '44mm',
+	'characteristics.brand': 'Tommy Hilfiger',
+	'characteristics.dial_color': 'Beige
+});
+```
+
+## Analysis of Options:
+
