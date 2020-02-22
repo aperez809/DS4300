@@ -32,7 +32,12 @@ Model 3 -
 	
 Model 4 - 
 	
-	General Outline: Our Redis store will have a similar structure to Model 2, where each category's name (or ID) is the key. The value at that key is a hashmap-like object containing the products within that category, with each of the values being another nested hashmap with different characteristics about the product. A search API would take in a category, and relevant characteristics to search for. Retrieving category -> O(1), returning matching records -> O(n*k) where n in the number of records in the table, and k is the number of characteristics for the category (assumes that all items in a category have the same characteristics).
+	General Outline: Our Redis store will have a similar structure to Model 2, where each category's name (or ID) is the
+	key. The value at that key is a hashmap-like object containing the products within that category, with each of the
+	values being another nested hashmap with different characteristics about the product. A search API would take in a
+	category, and relevant characteristics to search for. Retrieving category -> O(1), returning matching records -> O(n*k)
+	where n in the number of records in the table, and k is the number of characteristics for the category (assumes that
+	all items in a category have the same characteristics).
 
 Model 5 - 
 	
